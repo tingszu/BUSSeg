@@ -1,0 +1,46 @@
+# Getting Started
+This document provides tutorials to train and evaluate.
+Before getting started, make sure you have finished installation setup.
+
+
+################################################################################
+Thyroid
+###############################   Data Prepare   ###############################
+cd data/thyroid
+python generate_dataset.py
+
+cd dataloader  ->  modify your own dataloader
+cd utils/preprocess.py -> modify your own data_type in function get_properties (line 44)
+cd train.py -> modify in function get_dataset (line 18)
+###############################  Open the server   ##############################
+python -m visdom.server -p 2020
+open the Browser, and enter the server_ip:2020
+##################################   Train   ####################################
+python train.py -e 100 -b 8 -g 7 --exp_id UNet --arch UNet --dataset thyroid
+################################## Test #########################################
+python predict.py --dataset thyroid --exp_id CENet --arch CENet -g 6
+python test.py --dataset thyroid --exp_id UNet --arch UNet -g 6
+python cross_validation.py --dataset thyroid --exp_id ensemble --arch UNet --tta -g 1
+
+
+################################################################################
+Kvasir
+###############################   Data Prepare   ###############################
+cd data/kvasir
+python generate_dataset.py
+##################################   Train   ####################################
+python -m visdom.server -p 2020
+open the Browser, and enter the server_ip:2020
+
+python train.py -e 100 -b 8 -g 7 --exp_id UNet --arch UNet --dataset kvasir
+python train.py -e 100 -b 8 -g 7 --exp_id UADNet --arch UADNet --dataset kvasir
+#############################   Tensorboard   ###################################
+tensorboard --logdir="./logs/kvasir/EXP_Tmp_NET_UNet/" --port=1234 --bind_all
+################################## Test #########################################
+python test.py --dataset kvasir --exp_id UNet --arch UNet -g 6
+
+
+################################################################################
+Idrid
+##################################   Train   ####################################
+python train.py -e 100 -b 8 --exp_id UNet --arch UNet --dataset idrid -g 7
