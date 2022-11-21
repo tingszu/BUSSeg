@@ -25,7 +25,8 @@ torch=1.8.0
 torchvision
 numpy
 ```
-Download training model "busi_BUSSeg.pth" from: https://drive.google.com/file/d/1ie-p0ZZdVUq05TzRIRuT40C1XMeQJttq/view?usp=sharing
+Download training model "busi_BUSSeg.pth" from:
+https://drive.google.com/file/d/1ie-p0ZZdVUq05TzRIRuT40C1XMeQJttq/view?usp=sharing
 
 <!--
 # Acknowledgement
