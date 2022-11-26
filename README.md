@@ -22,16 +22,18 @@ numpy
 Download training model "busi_BUSSeg.pth" from:
 https://drive.google.com/file/d/1ie-p0ZZdVUq05TzRIRuT40C1XMeQJttq/view?usp=sharing
 
-# Train
-After all the parameters have been configured, you can train the neural network with:
+# Train/Test
+Run the train script on busi dataset. The batch size we used is 4. If you do have enough GPU memory, the bacth size can be increased to 12 or 24 to save memory.
+* Train
 ```
-CUDA_VISIBLE_DEVICES=0 python train.py --arch BUSSeg --dataset busi -e 100 --fold 1 --exp_id 1 --img_size 384 --ifCrossImage
+python train.py --arch BUSSeg --dataset busi -e 100 --fold 1 --exp_id 1 --img_size 384 --ifCrossImage
+```
+* Test
+```
+python test.py --arch BUSSeg  --dataset busi -e 100 --fold 1 --exp_id 1 --img_size 384 --ifCrossImage
 ```
 
-# Test
-```
-CUDA_VISIBLE_DEVICES=0 python test.py --arch BUSSeg  --dataset busi -e 100 --fold 1 --exp_id 1 --img_size 384 --ifCrossImage
-```
+
 
 
 <!--
@@ -44,7 +46,7 @@ If you find BUSSeg useful, please cite our paper. This paper is under review (su
 
 ```
 @article{BUSSeg,
-    title = {Conjoining Within- and Cross-image Long-range Dependency Modeling for Breast Lesion Segmentation from Ultrasound Images},
+    title = {A Conjoining Long-range Dependency Modeling  for Breast Ultrasound Segmentation},
     journal = {IEEE Transactions on Medical Imaging},
     volume = {XX},
     pages = {XXXXXX},
