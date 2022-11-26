@@ -1,6 +1,6 @@
-# BUSSeg
+# A Conjoining Long-range Dependency Modeling  for Breast Ultrasound Segmentation
 
-This is the official repo for the paper "Conjoining Within- and Cross-image Long-range Dependency Modeling for Breast Lesion Segmentation from Ultrasound Images".
+This is the official repo for the paper "A Conjoining Long-range Dependency Modeling  for Breast Ultrasound Segmentation".
 We have released the codes of core modules and more content will be added later. This paper is under review (submitted to TMI).
 
 # Datasets
@@ -9,13 +9,7 @@ We have released the codes of core modules and more content will be added later.
 * **Nerve Ultrasound Dataset**: A dataset from the Kaggle ultrasound nerve segmentation challenge(https://www.kaggle.com/c/ultrasound-nerve-segmentation)
 
 # Abstract
-We present a novel deep network (namely BUSSeg) equipped with both within- and cross-image long-range dependency modeling for automated lesions segmentation from breast ultrasound images, which is a quite daunting task due to (1) the large variation of breast lesions, (2) the ambiguous lesion boundaries, and (3) the existence
-of massive speckle noise and artifacts in ultrasound images. Our work is motivated by the fact that most existing methods only focus on modeling the within-image dependencies while neglecting the cross-image dependencies, which are essential for this task under limited training data and massive noise. We first propose a novel crossimage dependency module (CDM) with a cross-image contextual modeling scheme and a cross-image dependency loss (CDL) to capture more consistent feature expression
-and alleviate noise interference. Compared with existing cross-image methods, the proposed CDM has two merits. First, we utilize more complete spatial features instead
-of commonly used discrete pixel vectors to capture the semantic dependencies between images, mitigating the negative effects of speckle noise and making the acquired
-features more representative. Second, the proposed CDM includes both intra- and inter-class contextual modeling rather than just extracting homogeneous contextual dependencies. Furthermore, we develop a parallel bi-encoder architecture (PBA) to tame a Transformer and a convolutional neural network to enhance BUSSeg’s capability
-in capturing within-image long-range dependencies and hence offer richer features for CDM. We conducted extensive experiments on two representative public breast
-ultrasound datasets, and the results demonstrate that the proposed BUSSeg consistently outperforms state-of-the-art approaches in most metrics.
+We present a novel deep network (namely BUSSeg) equipped with both within- and cross-image long-range dependency modeling for automated lesions segmentation from breast ultrasound images, which is a quite daunting task due to (1) the large variation of breast lesions, (2) the ambiguous lesion boundaries, and (3) the existence of speckle noise and artifacts in ultrasound images. Our work is motivated by the fact that most existing methods only focus on modeling the within-image dependencies while neglecting the cross-image dependencies, which are essential for this task under limited training data and noise. We first propose a novel cross-image dependency module (CDM) with a cross-image contextual modeling scheme and a cross-image dependency loss (CDL) to capture more consistent feature expression and alleviate noise interference. Compared with existing cross-image methods, the proposed CDM has two merits. First, we utilize more complete spatial features instead of commonly used discrete pixel vectors to capture the semantic dependencies between images, mitigating the negative effects of speckle noise and making the acquired features more representative. Second, the proposed CDM includes both intra- and inter-class contextual modeling rather than just extracting homogeneous contextual dependencies. Furthermore, we develop a parallel bi-encoder architecture (PBA) to tame a Transformer and a convolutional neural network to enhance BUSSeg's capability in capturing within-image long-range dependencies and hence offer richer features for CDM. We conducted extensive experiments on two representative public breast ultrasound datasets, and the results demonstrate that the proposed BUSSeg consistently outperforms state-of-the-art approaches in most metrics.
 
 # Requirements
 ```
@@ -27,6 +21,18 @@ numpy
 ```
 Download training model "busi_BUSSeg.pth" from:
 https://drive.google.com/file/d/1ie-p0ZZdVUq05TzRIRuT40C1XMeQJttq/view?usp=sharing
+
+# Train
+After all the parameters have been configured, you can train the neural network with:
+```
+CUDA_VISIBLE_DEVICES=0 python train.py --arch BUSSeg --dataset busi -e 100 --fold 1 --exp_id 1 --img_size 384 --ifCrossImage
+```
+
+# Test
+```
+CUDA_VISIBLE_DEVICES=0 python test.py --arch BUSSeg  --dataset busi -e 100 --fold 1 --exp_id 1 --img_size 384 --ifCrossImage
+```
+
 
 <!--
 # Acknowledgement
