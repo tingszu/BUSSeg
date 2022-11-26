@@ -23,7 +23,7 @@ Download training model "busi_BUSSeg.pth" from:
 https://drive.google.com/file/d/1ie-p0ZZdVUq05TzRIRuT40C1XMeQJttq/view?usp=sharing
 
 ## 4. Train/Test
-Run the train script on busi dataset. The batch size we used is 4. If you do have enough GPU memory, the bacth size can be increased to 12 or 24 to save memory.
+Run the train script on busi dataset. The batch size we used is 4. If you do have enough GPU memory, the bacth size can be increased to 8 or 16 to save memory.
 * Train
 ```
 python train.py --arch BUSSeg --dataset busi -e 100 --fold 1 --exp_id 1 --img_size 384 --ifCrossImage
