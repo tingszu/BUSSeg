@@ -1,6 +1,6 @@
-# A Conjoining Long-range Dependency Modeling  for Breast Ultrasound Segmentation
+# Cross-image Dependency Modelling for Breast Ultrasound Segmentation
 
-This is the official repo for the paper "A Conjoining Long-range Dependency Modeling  for Breast Ultrasound Segmentation".
+This is the official repo for the paper "Cross-image Dependency Modelling for Breast Ultrasound Segmentation".
 We have released the codes of core modules and more content will be added later. This paper is under review (submitted to TMI).
 
 ## 1. Datasets
