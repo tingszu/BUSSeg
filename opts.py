@@ -22,7 +22,6 @@ assert LooseVersion(torch.__version__) >= LooseVersion('1.3.0'), 'PyTorch>=1.3.0
 
 
 def setup_seed(seed):
-    """ 设置论文随机种子数相同 """
     if seed != 0:
         random.seed(seed)
         np.random.seed(seed)
