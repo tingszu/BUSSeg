@@ -24,12 +24,12 @@ def eval_net(criterion, logx, epoch, args, viz, isMemory):
                 true_masks = true_masks.to(device=args.device, dtype=mask_type)
 
                 if args.ifCrossImage:
-                    mask_pred = args.net(imgs, true_masks, isMemory)  # 返回的是列表 包含 列表
+                    mask_pred = args.net(imgs, true_masks, isMemory)  
                     loss , seg_loss, class_loss = criterion(mask_pred, true_masks, is_loss=True)
                     if isinstance(mask_pred[0], list):
                         mask_pred = mask_pred[0][0]
                     else:
-                        mask_pred = mask_pred[0]  # 保持后面的一致，计算分割的精度
+                        mask_pred = mask_pred[0]  
                 else:
                     if args.arch == 'DCRNet':
                         mask_pred = args.net(imgs, flag='test')
