@@ -48,7 +48,7 @@ def split_dataset():
         val = val[0] + val[1]+ val[2]
         np.random.shuffle(val)
         json_file['val'] = val
-        # train 中增加两个样本, "benign (84).png", "benign (195).png"
+        # train 
         train = train[0] + train[1] + train[2]
         np.random.shuffle(train)
         json_file['train'] = train
