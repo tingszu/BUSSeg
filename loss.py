@@ -31,7 +31,7 @@ class DiceLoss(nn.Module):
 
         return loss
 
-# Dice损失函数
+# 
 class DiceLoss_cby(nn.Module):
     def __init__(self):
         super(DiceLoss_cby, self).__init__()
@@ -91,12 +91,12 @@ class DiceBCELoss(nn.Module):
                 return [seg_loss + 0.1 * loss_contrast, seg_loss, loss_contrast]
 
 
-        if isinstance(net_output, list): #深监督 列表
+        if isinstance(net_output, list):
             for i in range(len(net_output)):
                 result += self.dc(net_output[i], target) +  self.ce(net_output[i], target)
             return result
 
-        # 如果是3通道的softmax的话
+        #
         if net_output.size(1) == 3:
             net_output = F.softmax(net_output, dim=1)
             a = flatten(net_output[:, 1:3, ...])
@@ -112,10 +112,6 @@ class DiceBCELoss(nn.Module):
 
 
 class Criterion_cross(nn.Module):
-    '''
-    co : 进行类别和分割监督
-    根据list长度判断是否有co_attention loss 计算
-    '''
 
     def __init__(self):
         super(Criterion_cross, self).__init__()
@@ -145,7 +141,7 @@ class Criterion_cross(nn.Module):
 
         affinity_loss = self.AffinityLoss(A, affinity_matrix_cat)
 
-        if is_loss: #返回其他的loss
+        if is_loss: 
             return seg_loss + 0.1 * affinity_loss, seg_loss, affinity_loss
             # return seg_loss + class_loss,   seg_loss, class_loss
         else:
@@ -156,7 +152,6 @@ def heatmap(h, feature_map):
     feature = feature_map.cpu().data.numpy()
     feature_img = feature
     feature_img = np.mean(feature_img, axis=0)
-    #最深层特征归一化
     # feature_img = normalization(feature_img)
     feature_img = np.asarray(feature_img * 255).astype(np.uint8)
     # feature_img = cv2.applyColorMap(feature_img, cv2.COLORMAP_JET)
@@ -164,7 +159,7 @@ def heatmap(h, feature_map):
     feature_img = cv2.resize(feature_img, (h, h), interpolation=cv2.INTER_LINEAR)
     return feature_img
 
-# Dice损失函数
+#
 class AffinityLoss_new(nn.Module):
     def __init__(self):
         super(AffinityLoss_new, self).__init__()
@@ -184,10 +179,6 @@ class AffinityLoss_new(nn.Module):
         return bce_loss + dice_loss
 
 class Criterion_co(nn.Module):
-    '''
-    co : 进行类别和分割监督
-    根据list长度判断是否有co_attention loss 计算
-    '''
 
     def __init__(self):
         super(Criterion_co, self).__init__()
@@ -200,7 +191,7 @@ class Criterion_co(nn.Module):
         seg_loss, affinity_loss = 0, 0
 
         seg_loss = self.dice(preds[0], true_masks) + self.bce(preds[0], true_masks)
-        if not preds[1]: #第二个参数空
+        if not preds[1]: 
             return  seg_loss, seg_loss, seg_loss
         else:
             for i in range(len(preds[1])):
@@ -208,7 +199,7 @@ class Criterion_co(nn.Module):
                                  self.AffinityLoss((1-preds[1][i]), (1-preds[2][i]))
             affinity_loss = affinity_loss / len(preds[1])
 
-        if is_loss: #返回其他的loss
+        if is_loss: 
             coefficient = 0.1
             return seg_loss + coefficient * affinity_loss, seg_loss, affinity_loss
         else:
@@ -216,7 +207,6 @@ class Criterion_co(nn.Module):
 
 
 def one_hot(masks):
-    # 将一通道的二分类转成onehot
     shp_x = (masks.size(0), 2, masks.size(2), masks.size(3))
     with torch.no_grad():
         masks = masks.long()
@@ -345,7 +335,7 @@ class PixelContrastLoss(nn.Module):
         self.base_temperature = 0.07
 
         self.max_samples = 1024
-        self.max_views = 50  # 数据太多
+        self.max_views = 50  
 
     def _hard_anchor_sampling(self, X, y_hat, y):
         batch_size, feat_dim = X.shape[0], X.shape[-1]
