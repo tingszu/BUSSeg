@@ -22,8 +22,7 @@ class busi_cross(Dataset):
         self.fp = open(join('data', args.dataset, file_name), 'r')
         self.dataset = json.load(self.fp)
         self.fp.close()
-
-        ##['test']这里要注意改到跟test.py的get_id一样才可以
+        
         if self.flag == 'train':
            self.ids = self.dataset['train']
         elif self.flag == 'val':
