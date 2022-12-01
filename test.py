@@ -22,10 +22,8 @@ import pandas as pd
 import torch.nn.functional as F
 
 def one_hot(masks, label):
-    #masks:[ b, 1, h, w] label: [1, 0, 0] 正常  [0, 1, 0] 良性  [0, 0, 1] 恶性
-    #                                   0 正常          1 良性         2  恶性
     shp_x = (masks.size(0), 3, masks.size(2), masks.size(3))
-    cls = torch.argmax(label, dim=1) # 类别
+    cls = torch.argmax(label, dim=1) #
 
     for i in range(masks.size(0)):
         temp = masks[i,...]
@@ -104,8 +102,6 @@ def predict(pil_img, save_path, threshold=0.5):
             mask = np.expand_dims(mask, axis=2)
             cv2.imwrite(save_path, mask)
 
-
-##['test']这里要注意改到跟dataloader的一样才可以
 def get_id():
     if args.dataset in ["busi", "datasetB", "kvasir"]:
         file_name = 'dataset' + args.fold + '.json'
@@ -165,12 +161,12 @@ def eval_all_dataset():
                             true_masks3 = one_hot(true_masks3, label2)
 
                 if args.ifCrossImage:
-                    mask_pred = args.net(imgs, imgs)  # 返回的是列表 包含 列表
+                    mask_pred = args.net(imgs, imgs) 
                     # class_id = torch.argmax(mask_pred[1], dim=1)[0]
                     if isinstance(mask_pred[0][0], list):
                         mask_pred = mask_pred[0][0][0]
                     else:
-                        mask_pred = mask_pred[0][0,...].unsqueeze(0)  # 保持后面的一致，计算分割的精度
+                        mask_pred = mask_pred[0][0,...].unsqueeze(0)  
                 else:
                     mask_pred = args.net(imgs)
 
@@ -208,7 +204,7 @@ def eval_all_dataset():
                     jc += (get_jaccard_score(mask_pred[:,1,...].unsqueeze(1), true_masks[:,1,...].unsqueeze(1)) + \
                            get_jaccard_score(mask_pred[:,2,...].unsqueeze(1), true_masks[:,2,...].unsqueeze(1)))/2.0
 
-                    # 保存测试集各个文件dice
+                   
                     dc_tmp = ( get_f1_score(mask_pred[:,1,...].unsqueeze(1), true_masks[:,1,...].unsqueeze(1)) \
                                + get_f1_score(mask_pred[:,2,...].unsqueeze(1), true_masks[:,2,...].unsqueeze(1)) )/2.0
                     to_csv = to_csv.append([{'file_id': ids[i], 'Dice': dc_tmp}], ignore_index=True)
@@ -219,7 +215,7 @@ def eval_all_dataset():
                     sp += get_specificity(mask_pred, true_masks)
                     jc += get_jaccard_score(mask_pred, true_masks)
 
-                    # 保存测试集各个文件dice
+                    
                     dc_tmp = get_f1_score(mask_pred, true_masks)
                     to_csv = to_csv.append([{'file_id': ids[i], 'Dice': dc_tmp}], ignore_index=True)
 
