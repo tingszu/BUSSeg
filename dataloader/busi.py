@@ -22,7 +22,6 @@ class busi(Dataset):
         self.dataset = json.load(self.fp)
         self.fp.close()
 
-        ##['test']这里要注意改到跟test.py的get_id一样才可以
         if self.flag == 'train':
             # self.ids = self.dataset['trian']
             if args.fold == '':
@@ -92,7 +91,7 @@ class busi(Dataset):
 
         if image.max() > 1:
             image = (image - self.mean) / self.sd
-        # TODO 通道增强
+        # TODO
         # HSV = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)[:, :, 1:]
         # LAB = cv2.cvtColor(image, cv2.COLOR_BGR2LAB)
         # image = np.concatenate((image, HSV, LAB), axis=-1)
@@ -125,7 +124,7 @@ class busi(Dataset):
             label = [0, 0, 1]
             class_name = 'malignant'
 
-        # #cby code划分的五折
+        # #cby code
         # img_file = self.ids[i]
         # mask_file = img_file.replace('image', 'mask')
 
