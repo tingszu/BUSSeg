@@ -88,15 +88,15 @@ def train_net():
 
                 # Prepare the image and the corresponding mask.
                 imgs = imgs.to(device=args.device, dtype=torch.float32)
-                mask_type = torch.float32 if args.n_classes == 1 else torch.long # 如果用的是多分类交叉熵，mask的类型应该是long
+                mask_type = torch.float32 if args.n_classes == 1 else torch.long 
                 true_masks = true_masks.to(device=args.device, dtype=mask_type)
 
                 # Forward propagation.
                 isMemory = False if epoch <= 10 else True
                 if args.ifCrossImage:
-                    masks_pred = args.net(imgs, true_masks, isMemory=isMemory)  # 返回的是列表 包含 列表
+                    masks_pred = args.net(imgs, true_masks, isMemory=isMemory)  
                     loss, seg_loss,  class_loss = criterion(masks_pred, true_masks, is_loss=True)
-                    masks_pred = masks_pred[0]  # 返回的是列表，取第一个分割结果，保持后面的一致，计算分割的精度
+                    masks_pred = masks_pred[0] 
                 else:
                     if args.arch == 'DCRNet':
                         masks_pred = args.net(imgs, flag='train')
@@ -105,7 +105,7 @@ def train_net():
                         masks_pred = args.net(imgs)
                         loss = criterion(masks_pred, true_masks)
 
-                if isinstance(loss, list): #对比损失返回列表
+                if isinstance(loss, list):
                     loss_temp = loss
                     loss, seg_loss, class_loss = loss_temp[0], loss_temp[1], loss_temp[2]
                     epoch_seg_loss += seg_loss.item()
