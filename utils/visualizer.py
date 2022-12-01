@@ -5,9 +5,6 @@ import time
 
 class Visualizer(object):
     """
-    封装了visdom的基本操作，但是你仍然可以通过`self.vis.function`
-    或者`self.function`调用原生的visdom接口
-    比如
     self.text('hello visdom')
     self.histogram(t.randn(1000))
     self.line(t.arange(0, 10),t.arange(1, 11))
@@ -16,23 +13,14 @@ class Visualizer(object):
     def __init__(self, env='default', **kwargs):
         self.vis = visdom.Visdom(env=env, port=8097, **kwargs)
 
-        # 画的第几个数，相当于横坐标
-        # 比如（’loss',23） 即loss的第23个点
         self.index = {}
         self.log_text = ''
 
     def reinit(self, env='default', **kwargs):
-        """
-        修改visdom的配置
-        """
         self.vis = visdom.Visdom(env=env, **kwargs)
         return self
 
     def plot_many(self, d):
-        """
-        一次plot多个
-        @params d: dict (name, value) i.e. ('loss', 0.11)
-        """
         for k, v in d.iteritems():
             self.plot(k, v)
 
@@ -73,8 +61,4 @@ class Visualizer(object):
         self.vis.text(self.log_text, win)
 
     def __getattr__(self, name):
-        """
-        self.function 等价于self.vis.function
-        自定义的plot,image,log,plot_many等除外
-        """
         return getattr(self.vis, name)
