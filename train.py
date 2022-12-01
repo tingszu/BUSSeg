@@ -210,8 +210,8 @@ def train_net():
         logx.add_image('mask/pd', torch.cat([k > 0.5 for k in masks_pred], 2), epoch)
 
         if args.ifCrossImage or args.cls or args.arch.endswith('_scon'):
-            # val_loss = val_loss[0] # 总的loss
-            val_loss = val_loss[1] # 分割的loss
+            # val_loss = val_loss[0] 
+            val_loss = val_loss[1]
 
         # Update the best score
         if best_score <  metrics['dc']:
