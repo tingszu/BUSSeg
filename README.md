@@ -42,11 +42,11 @@ python test.py --arch BUSSeg  --dataset busi -e 100 --fold 1 --exp_id 1 --img_si
 
 
 ## Citation
-If you find BUSSeg useful, please cite our paper. This paper is under review (submitted to TMI).
+If you find BUSSeg useful, please cite our paper. This paper is accepted by TMI.
 
 ```
 @article{BUSSeg,
-    title = {A Conjoining Long-range Dependency Modeling  for Breast Ultrasound Segmentation},
+    title = {Cross-lmage Dependency Modeling for Breast Ultrasound Segmentation},
     journal = {IEEE Transactions on Medical Imaging},
     volume = {XX},
     pages = {XXXXXX},
