@@ -47,7 +47,7 @@ class busi(Dataset):
         # if self.flag == 'train':
         #     aug = Compose([
         #         Resize(self.img_size, self.img_size),
-        #         Rotate(limit=(-45, 45), p=0.5),
+        #         Rotate(limit=(-15, 15), p=0.5),
         #         HorizontalFlip(p=0.5),
         #         VerticalFlip(p=0.5),
         #     ])
@@ -69,7 +69,7 @@ class busi(Dataset):
                 #     RandomResizedCrop(height=224, width=224, scale=(0.5, 1), ratio=(0.5, 1.8), p=0.5),
                 # ]),
                 Resize(self.img_size, self.img_size),
-                # Rotate(limit=(-45, 45), p=0.5, border_mode=cv2.BORDER_CONSTANT),
+                # Rotate(limit=(-15, 15), p=0.5, border_mode=cv2.BORDER_CONSTANT),
                 # HorizontalFlip(p=0.5),
                 # VerticalFlip(p=0.5),
             ])
