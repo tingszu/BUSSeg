@@ -44,7 +44,7 @@ class busi_cross(Dataset):
         if self.flag == 'train':
             aug = Compose([
                 Resize(self.img_size, self.img_size),
-                Rotate(limit=(-45, 45), p=0.5, border_mode=cv2.BORDER_CONSTANT),
+                Rotate(limit=(-15, 15), p=0.5, border_mode=cv2.BORDER_CONSTANT),
                 HorizontalFlip(p=0.5),
                 VerticalFlip(p=0.5),
             ])
