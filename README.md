@@ -1,7 +1,7 @@
 # Cross-image Dependency Modelling for Breast Ultrasound Segmentation
 
 This is the official repo for the paper "Cross-image Dependency Modelling for Breast Ultrasound Segmentation".
-Due to the confidentiality agreement in commercial cooperation, we only provide codes of core modules and the whole trainable models for the convenience of comparisons.
+**Due to the confidentiality agreement in commercial cooperation, we only provide codes of core modules and the whole trainable models for the convenience of comparisons.**
 We have released the codes of core modules and more content will be added later. This paper is accepted by TMI.
 
 ## 1. Datasets
