@@ -1,6 +1,7 @@
 # Cross-image Dependency Modelling for Breast Ultrasound Segmentation
 
 This is the official repo for the paper "Cross-image Dependency Modelling for Breast Ultrasound Segmentation".
+Due to the confidentiality agreement in commercial cooperation, we only provide codes of core modules and the whole trainable models for the convenience of comparisons.
 We have released the codes of core modules and more content will be added later. This paper is accepted by TMI.
 
 ## 1. Datasets
@@ -45,15 +46,11 @@ python test.py --arch BUSSeg  --dataset busi -e 100 --fold 1 --exp_id 1 --img_si
 If you find BUSSeg useful, please cite our paper. This paper is accepted by TMI.
 
 ```
-@article{BUSSeg,
-    title = {Cross-lmage Dependency Modeling for Breast Ultrasound Segmentation},
-    journal = {IEEE Transactions on Medical Imaging},
-    volume = {XX},
-    pages = {XXXXXX},
-    year = {2022},
-    issn = {XXXXXXXXXXX},
-    doi = {XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX},
-    url = {XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX},
-    author = {Huisi Wu and Xiaoting Huang and Xinrong Guo and Zhenkun Wen and Jing Qin},
+@article{wu2023cross,
+  title={Cross-image Dependency Modelling for Breast Ultrasound Segmentation},
+  author={Wu, Huisi and Huang, Xiaoting and Guo, Xinrong and Wen, Zhenkun and Qin, Jing},
+  journal={IEEE Transactions on Medical Imaging},
+  year={2023},
+  publisher={IEEE}
 }
 ```
